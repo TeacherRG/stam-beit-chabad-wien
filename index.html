@@ -29,486 +29,80 @@
             max-width: 500px;
             width: 100%;
             animation: slideUp 0.6s ease-out;
-            overflow: hidden; /* добавлено для предотвращения выхода дочерних элементов */
+            overflow: hidden;
         }
 
         @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            color: #2d3748;
-            font-size: 28px;
-            margin-bottom: 8px;
-            font-weight: 700;
-        }
-
-        .header p {
-            color: #718096;
-            font-size: 16px;
-        }
-
-        .form-group {
-            margin-bottom: 25px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 8px;
-            color: #2d3748;
-            font-weight: 600;
-            font-size: 14px;
-        }
-
-        input, select {
-            width: 100%;
-            padding: 12px 16px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            font-size: 16px;
-            transition: all 0.3s ease;
-            background: #f7fafc;
-        }
-
-        input:focus, select:focus {
-            outline: none;
-            border-color: #667eea;
-            background: white;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
-        }
-
-        .slot-option {
-            padding: 15px 20px;
-            border: 2px solid #e2e8f0;
-            border-radius: 12px;
-            background: #f7fafc;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-align: center;
-            font-weight: 500;
-        }
-
-        .slot-option:hover {
-            border-color: #667eea;
-            background: #edf2f7;
-            transform: translateY(-2px);
-        }
-
-        .slot-option.selected {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .slot-option.booked {
-            background: #fed7d7;
-            border-color: #fc8181;
-            color: #c53030;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .slot-option.booked:hover {
-            transform: none;
-        }
-
-        .calendar {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 8px;
-            margin-top: 15px;
-            padding: 20px;
-            background: #f7fafc;
-            border-radius: 12px;
-            border: 2px solid #e2e8f0;
-            width: 100%;
-            box-sizing: border-box;
-            /* Добавлено ограничение ширины, чтобы не выходить за пределы контейнера */
-            max-width: 100%;
-            min-width: 0;
-            overflow-x: auto;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 0 10px;
-            width: 100%;
-            box-sizing: border-box;
-        }
-
-        .calendar-nav {
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            padding: 8px 12px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-        }
-
-        .calendar-nav:hover {
-            background: #5a6fd8;
-        }
-
-        .calendar-month {
-            font-size: 18px;
-            font-weight: 600;
-            color: #2d3748;
-        }
-
-        .calendar-day-header {
-            text-align: center;
-            font-weight: 600;
-            color: #4a5568;
-            padding: 10px 5px;
-            font-size: 14px;
-            min-width: 0;
-            word-break: break-word;
-        }
-
-        .calendar-day {
-            aspect-ratio: 1;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: white;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 500;
-            position: relative;
-            min-height: 60px;
-            min-width: 0;
-            word-break: break-word;
-        }
-
-        .calendar-day:hover:not(.disabled):not(.other-month) {
-            border-color: #667eea;
-            background: #edf2f7;
-            transform: scale(1.05);
-        }
-
-        .calendar-day.selected {
-            border-color: #667eea;
-            background: #667eea;
-            color: white;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
-        }
-
-        .calendar-day.disabled {
-            background: #f7fafc;
-            color: #a0aec0;
-            cursor: not-allowed;
-            opacity: 0.6;
-        }
-
-        .calendar-day.other-month {
-            color: #cbd5e0;
-            background: #f7fafc;
-        }
-
-        .calendar-day.has-slots {
-            border-color: #48bb78;
-            background: #f0fff4;
-        }
-
-        .calendar-day.has-slots:hover {
-            border-color: #38a169;
-            background: #c6f6d5;
-        }
-
-        .calendar-day.fully-booked {
-            background: #fed7d7;
-            border-color: #fc8181;
-            color: #c53030;
-        }
-
-        .calendar-day-number {
-            font-size: 16px;
-            margin-bottom: 2px;
-        }
-
-        .calendar-day-slots {
-            font-size: 10px;
-            opacity: 0.8;
-        }
-
-        .slot-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 12px;
-            margin-top: 15px;
-        }
-
-        .submit-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 20px;
-        }
-
-        .submit-btn:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
-        }
-
-        .submit-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .success-message {
-            background: #c6f6d5;
-            color: #22543d;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 500;
-            border: 2px solid #9ae6b4;
-        }
-
-        .error-message {
-            background: #fed7d7;
-            color: #c53030;
-            padding: 15px 20px;
-            border-radius: 12px;
-            margin-top: 20px;
-            text-align: center;
-            font-weight: 500;
-            border: 2px solid #fc8181;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid #ffffff;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        .info-box {
-            background: #ebf8ff;
-            border: 2px solid #90cdf4;
-            border-radius: 12px;
-            padding: 20px;
-            margin-bottom: 25px;
-            color: #2a4365;
-        }
-
-        .info-box h3 {
-            margin-bottom: 10px;
-            color: #2c5282;
-        }
-
-        .info-box ul {
-            list-style-position: inside;
-            line-height: 1.6;
-        }
-
-        .admin-panel {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .admin-btn {
-            background: #2d3748;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            cursor: pointer;
-            font-size: 18px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-            transition: all 0.3s ease;
-        }
-
-        .admin-btn:hover {
-            background: #4a5568;
-            transform: scale(1.1);
-        }
-
-        .admin-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-            display: none;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .admin-content {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            max-width: 800px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .close-btn {
-            background: none;
-            border: none;
-            font-size: 24px;
-            cursor: pointer;
-            color: #666;
-        }
-
-        .bookings-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .bookings-table th,
-        .bookings-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .bookings-table th {
-            background: #f7fafc;
-            font-weight: 600;
-        }
-
-        .bookings-table tbody tr:hover {
-            background: #f7fafc;
-        }
-
-        .password-form {
-            text-align: center;
-            padding: 20px;
-        }
-
-        .password-input {
-            padding: 12px;
-            border: 2px solid #e2e8f0;
-            border-radius: 8px;
-            margin: 10px;
-            font-size: 16px;
-        }
-
-        .login-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 16px;
-        }
-
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-
-        .stat-card {
-            background: #f7fafc;
-            padding: 20px;
-            border-radius: 12px;
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #667eea;
-        }
-
-        .stat-label {
-            font-size: 14px;
-            color: #666;
-            margin-top: 5px;
-        }
-
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: #2d3748; font-size: 28px; margin-bottom: 8px; font-weight: 700; }
+        .header p { color: #718096; font-size: 16px; }
+        .form-group { margin-bottom: 25px; }
+        label { display: block; margin-bottom: 8px; color: #2d3748; font-weight: 600; font-size: 14px; }
+        input, select { width: 100%; padding: 12px 16px; border: 2px solid #e2e8f0; border-radius: 12px; font-size: 16px; transition: all 0.3s ease; background: #f7fafc; }
+        input:focus, select:focus { outline: none; border-color: #667eea; background: white; box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1); }
+        .slot-option { padding: 15px 20px; border: 2px solid #e2e8f0; border-radius: 12px; background: #f7fafc; cursor: pointer; transition: all 0.3s ease; text-align: center; font-weight: 500; }
+        .slot-option:hover { border-color: #667eea; background: #edf2f7; transform: translateY(-2px); }
+        .slot-option.selected { border-color: #667eea; background: #667eea; color: white; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+        .slot-option.booked { background: #fed7d7; border-color: #fc8181; color: #c53030; cursor: not-allowed; opacity: 0.6; }
+        .slot-option.booked:hover { transform: none; }
+        .calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; margin-top: 15px; padding: 20px; background: #f7fafc; border-radius: 12px; border: 2px solid #e2e8f0; width: 100%; box-sizing: border-box; max-width: 100%; min-width: 0; overflow-x: auto; }
+        .calendar-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding: 0 10px; width: 100%; box-sizing: border-box; }
+        .calendar-nav { background: #667eea; color: white; border: none; border-radius: 8px; padding: 8px 12px; cursor: pointer; font-size: 16px; font-weight: bold; }
+        .calendar-nav:hover { background: #5a6fd8; }
+        .calendar-month { font-size: 18px; font-weight: 600; color: #2d3748; }
+        .calendar-day-header { text-align: center; font-weight: 600; color: #4a5568; padding: 10px 5px; font-size: 14px; min-width: 0; word-break: break-word; }
+        .calendar-day { aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; border: 2px solid #e2e8f0; border-radius: 8px; cursor: pointer; transition: all 0.3s ease; font-weight: 500; position: relative; min-height: 60px; min-width: 0; word-break: break-word; }
+        .calendar-day:hover:not(.disabled):not(.other-month) { border-color: #667eea; background: #edf2f7; transform: scale(1.05); }
+        .calendar-day.selected { border-color: #667eea; background: #667eea; color: white; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); }
+        .calendar-day.disabled { background: #f7fafc; color: #a0aec0; cursor: not-allowed; opacity: 0.6; }
+        .calendar-day.other-month { color: #cbd5e0; background: #f7fafc; }
+        .calendar-day.has-slots { border-color: #48bb78; background: #f0fff4; }
+        .calendar-day.has-slots:hover { border-color: #38a169; background: #c6f6d5; }
+        .calendar-day.fully-booked { background: #fed7d7; border-color: #fc8181; color: #c53030; }
+        .calendar-day-number { font-size: 16px; margin-bottom: 2px; }
+        .calendar-day-slots { font-size: 10px; opacity: 0.8; }
+        .slot-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-top: 15px; }
+        .submit-btn { width: 100%; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-size: 16px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; margin-top: 20px; }
+        .submit-btn:hover:not(:disabled) { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4); }
+        .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+        .success-message { background: #c6f6d5; color: #22543d; padding: 15px 20px; border-radius: 12px; margin-top: 20px; text-align: center; font-weight: 500; border: 2px solid #9ae6b4; }
+        .error-message { background: #fed7d7; color: #c53030; padding: 15px 20px; border-radius: 12px; margin-top: 20px; text-align: center; font-weight: 500; border: 2px solid #fc8181; }
+        .loading { display: inline-block; width: 20px; height: 20px; border: 3px solid #ffffff; border-radius: 50%; border-top-color: transparent; animation: spin 1s ease-in-out infinite; margin-right: 10px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .info-box { background: #ebf8ff; border: 2px solid #90cdf4; border-radius: 12px; padding: 20px; margin-bottom: 25px; color: #2a4365; }
+        .info-box h3 { margin-bottom: 10px; color: #2c5282; }
+        .info-box ul { list-style-position: inside; line-height: 1.6; }
+        .admin-panel { position: fixed; top: 20px; right: 20px; z-index: 1000; }
+        .admin-btn { background: #2d3748; color: white; border: none; border-radius: 50%; width: 50px; height: 50px; cursor: pointer; font-size: 18px; box-shadow: 0 4px 12px rgba(0,0,0,0.3); transition: all 0.3s ease; }
+        .admin-btn:hover { background: #4a5568; transform: scale(1.1); }
+        .admin-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 2000; display: none; align-items: center; justify-content: center; }
+        .admin-content { background: white; border-radius: 20px; padding: 30px; max-width: 800px; width: 90%; max-height: 80vh; overflow-y: auto; }
+        .admin-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+        .close-btn { background: none; border: none; font-size: 24px; cursor: pointer; color: #666; }
+        .bookings-table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        .bookings-table th, .bookings-table td { padding: 12px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+        .bookings-table th { background: #f7fafc; font-weight: 600; }
+        .bookings-table tbody tr:hover { background: #f7fafc; }
+        .password-form { text-align: center; padding: 20px; }
+        .password-input { padding: 12px; border: 2px solid #e2e8f0; border-radius: 8px; margin: 10px; font-size: 16px; }
+        .login-btn { background: #667eea; color: white; border: none; padding: 12px 24px; border-radius: 8px; cursor: pointer; font-size: 16px; }
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .stat-card { background: #f7fafc; padding: 20px; border-radius: 12px; text-align: center; }
+        .stat-number { font-size: 24px; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 14px; color: #666; margin-top: 5px; }
         @media (max-width: 600px) {
-            .container {
-                padding: 30px 5px;
-                margin: 5px;
-            }
-            .calendar {
-                padding: 5px;
-                gap: 4px;
-                font-size: 13px;
-            }
-            .calendar-header {
-                padding: 0 2px;
-                font-size: 14px;
-            }
-            .calendar-day, .calendar-day-header {
-                font-size: 13px;
-                min-width: 0;
-                padding: 2px;
-            }
-            .slot-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .admin-content {
-                width: 95%;
-                padding: 20px;
-            }
-
-            .bookings-table {
-                font-size: 14px;
-            }
-
-            .stats {
-                grid-template-columns: 1fr 1fr;
-            }
+            .container { padding: 30px 5px; margin: 5px; }
+            .calendar { padding: 5px; gap: 4px; font-size: 13px; }
+            .calendar-header { padding: 0 2px; font-size: 14px; }
+            .calendar-day, .calendar-day-header { font-size: 13px; min-width: 0; padding: 2px; }
+            .slot-grid { grid-template-columns: 1fr; }
+            .admin-content { width: 95%; padding: 20px; }
+            .bookings-table { font-size: 14px; }
+            .stats { grid-template-columns: 1fr 1fr; }
         }
     </style>
 </head>
@@ -522,10 +116,10 @@
         <div class="info-box">
             <h3>ℹ️ Informationen zur Buchung:</h3>
             <ul>
-                <li><strong>Verfügbare Zeiten:</strong> 10:00, 11:00, 12:00, 13:00, 14:00, 15:00, 16:00, 17:00</li>
-                <li><strong>Ort:</strong> Wien, Österreich</li>
-                <li><strong>Dauer:</strong> ca. 30 Minuten</li>
-                <li><strong>Zeitraum:</strong> 12. August bis 7. September 2025 (außer Samstags)</li>
+                <li><strong>Доступная дата:</strong> 7 сентября 2025</li>
+                <li><strong>Возможные времена:</strong> с 10:00 до 18:00, каждые 30 минут</li>
+                <li><strong>Место:</strong> Вена, Австрия</li>
+                <li><strong>Длительность:</strong> до 30 минут</li>
             </ul>
         </div>
 
@@ -639,25 +233,20 @@
     </div>
 
     <script>
-        // Hilfsfunktion: ist Samstag?
-        function isSaturday(dateObj) {
-            return dateObj.getDay() === 6; // 0 = Sonntag ... 6 = Samstag
-        }
-
-        // Generierung der Slots für den Bereich (12.08.2025–07.09.2025, außer Samstag)
+        // Только 7 сентября 2025 и интервалы по 30 минут
         function generateTimeSlots() {
-            const start = new Date('2025-08-12');
-            const end = new Date('2025-09-07');
-            const slotTimes = ['10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00'];
-            let slots = [];
-            
-            for (let d = new Date(start); d <= end; d.setDate(d.getDate() + 1)) {
-                if (isSaturday(d)) continue;
-                const dateStr = d.toISOString().split('T')[0];
-                slotTimes.forEach(time => {
-                    slots.push({ date: dateStr, time: time, booked: false });
-                });
+            const dateStr = '2025-09-07';
+            const slotTimes = [];
+            for (let h = 10; h <= 18; h++) {
+                slotTimes.push(`${String(h).padStart(2, '0')}:00`);
+                if (h !== 18) {
+                    slotTimes.push(`${String(h).padStart(2, '0')}:30`);
+                }
             }
+            let slots = [];
+            slotTimes.forEach(time => {
+                slots.push({ date: dateStr, time: time, booked: false });
+            });
             return slots;
         }
 
@@ -666,7 +255,7 @@
         let selectedDate = null;
         let selectedTime = null;
         let selectedSlot = null;
-        let currentDate = new Date('2025-08-01');
+        let currentDate = new Date('2025-09-01');
         let bookingsData = [];
         const ADMIN_PASSWORD = 'tefillin2025';
 
@@ -734,7 +323,8 @@
                 const dayDate = new Date(year, month, day);
                 const dateString = dayDate.toISOString().split('T')[0];
 
-                if (dateString < '2025-08-12' || dateString > '2025-09-07' || isSaturday(dayDate)) {
+                // Только 7 сентября 2025
+                if (dateString !== '2025-09-07') {
                     dayElement.classList.add('disabled');
                     calendar.appendChild(dayElement);
                     continue;
@@ -871,7 +461,7 @@
                 selectedSlot.booked = true;
                 showMessage(
                     `🎉 Erfolgreich gebucht für ${formData.selectedSlot.formatted}. 
-                     Eine Bestätigung wurde an ${formData.email} gesendet.`, 
+Eine Bestätigung wurde an ${formData.email} gesendet.`, 
                     'success'
                 );
                 resetInterface();
